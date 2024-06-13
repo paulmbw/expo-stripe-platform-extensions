@@ -9,7 +9,7 @@ export async function createPaymentIntentClientSecret({
 }: StripePaymentIntentRequestBody): Promise<StripePaymentIntentResponse> {
   try {
     const response = await fetch(
-      "http://192.168.1.160:8000/stripe-payment-intent",
+      `${process.env.EXPO_PUBLIC_BACKEND_SERVICE_URL_DEV}/stripe-payment-intent`,
       {
         method: "POST",
         headers: {
