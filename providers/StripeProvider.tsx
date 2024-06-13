@@ -11,9 +11,9 @@ const StripeProvider: React.FC<StripeProviderProps> = ({
   const publishableKey = process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY;
   const merchantIdentifier = process.env.EXPO_PUBLIC_STRIPE_MERCHANT_IDENTIFIER;
 
-  if (!publishableKey) {
+  if (!publishableKey || !merchantIdentifier) {
     throw new Error(
-      "publishableKey is not set. Ensure that EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY is set in your environment variables."
+      "publishableKey or merchantIdentifier is not set. Ensure that EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY and EXPO_PUBLIC_STRIPE_MERCHANT_IDENTIFIER is set in your environment variables."
     );
   }
 

@@ -1,5 +1,4 @@
-import { Button, Image, StyleSheet } from "react-native";
-
+import { Alert, Button, Image, StyleSheet } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
@@ -40,11 +39,27 @@ export default function HomeScreen() {
       paymentSheetConfig
     );
 
-    const { error } = await presentPaymentSheet();
+    if (initPaymentSheetError) {
+      Alert.alert(
+        "There was a problem processing the payment",
+        "Please try again later"
+      );
 
-    if (!error) {
-      router.navigate("/completion");
+      return;
     }
+
+    const { error: presentPaymentSheetError } = await presentPaymentSheet();
+
+    if (presentPaymentSheetError) {
+      Alert.alert(
+        "There was a problem processing the payment",
+        "Please try again later"
+      );
+
+      return;
+    }
+
+    router.navigate("/completion");
   }
 
   return (

@@ -72,6 +72,7 @@ export default function CheckoutForm() {
 const styles = StyleSheet.create({
   paymentContainer: {
     gap: 20,
+    padding:50
   },
   errorMessage: {
     color: "#D81B3E",
